@@ -8,6 +8,7 @@ variable "artifact_content" {
 
 
 
+
 resource "null_resource" "example" {
   provisioner "local-exec" {
     command = "echo '${var.artifact_content}' > artifact.txt"
