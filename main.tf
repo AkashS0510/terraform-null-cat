@@ -11,8 +11,6 @@ resource "null_resource" "example" {
     command = "echo '${var.artifact_content}' > artifact.txt"
   }
 }
-
-
 resource "local_file" "artifact" {
   content  = var.artifact_content
   filename = "${path.module}/artifact.txt"
