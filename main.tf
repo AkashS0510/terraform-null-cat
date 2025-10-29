@@ -20,6 +20,7 @@ output "cat_ghost" {
 }
 
 
+
 output "cat_is_not_ghost" {
   value = "Ghost meawed successfully!"
 }
