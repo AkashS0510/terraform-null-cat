@@ -12,6 +12,7 @@ resource "null_resource" "example" {
   }
 }
 
+
 resource "local_file" "artifact" {
   content  = var.artifact_content
   filename = "${path.module}/artifact.txt"
