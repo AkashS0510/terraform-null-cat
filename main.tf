@@ -6,6 +6,7 @@ variable "artifact_content" {
   default     = "This is an artifact22 created by Terraform"
 }
 
+
 resource "null_resource" "example" {
   provisioner "local-exec" {
     command = "echo '${var.artifact_content}' > artifact.txt"
