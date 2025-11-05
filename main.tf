@@ -1,9 +1,27 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
+    }
+  }
+}
+
+provider "aws" {
+  region  = "us-east-1"
+  # profile = "default"   # uncomment to use named profile
+}
+
 provider "local" {}
 
 variable "artifact_content" {
-  description = "Content to be written2 to the artifact file"
+  description = "Content to be written to the artifact file"
   type        = string
-  default     = "This is an artifact22 created by Terraform"
+  default     = "This is an artifact created by Terraform"
 }
 
 resource "null_resource" "example" {
@@ -13,21 +31,13 @@ resource "null_resource" "example" {
 }
 
 resource "aws_s3_bucket" "logs" {
-  bucket = "my-log-bucket"
+  bucket = "my-log-bucket-unique-12345" # ensure global uniqueness
+  acl    = "private"
 }
 
 resource "local_file" "artifact" {
   content  = var.artifact_content
   filename = "${path.module}/artifact.txt"
-}
-
-output "cat_ghost" {
-  value = "Ghost meawed successfully!"
-}
-
-
-output "cat_is_not_ghost" {
-  value = "Ghost meawed successfully!"
 }
 
 output "artifact_content" {
