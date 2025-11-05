@@ -1,9 +1,25 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
+    }
+  }
+}
+
+
+
+
 provider "local" {}
 
 variable "artifact_content" {
-  description = "Content to be written2 to the artifact file"
+  description = "Content to be written to the artifact file"
   type        = string
-  default     = "This is an artifact22 created by Terraform"
+  default     = "This is an artifact created by Terraform"
 }
 
 resource "null_resource" "example" {
@@ -12,18 +28,11 @@ resource "null_resource" "example" {
   }
 }
 
+
+
 resource "local_file" "artifact" {
   content  = var.artifact_content
   filename = "${path.module}/artifact.txt"
-}
-
-output "cat_ghost" {
-  value = "Ghost meawed successfully!"
-}
-
-
-output "cat_is_not_ghost" {
-  value = "Ghost meawed successfully!"
 }
 
 output "artifact_content" {
