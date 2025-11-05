@@ -13,10 +13,6 @@ terraform {
 
 
 
-provider "aws" {
-  region  = "us-east-1"
-  # profile = "default"   # uncomment to use named profile
-}
 
 provider "local" {}
 
@@ -32,10 +28,7 @@ resource "null_resource" "example" {
   }
 }
 
-resource "aws_s3_bucket" "logs" {
-  bucket = "my-log-bucket-unique-12345" # ensure global uniqueness
-  acl    = "private"
-}
+
 
 resource "local_file" "artifact" {
   content  = var.artifact_content
