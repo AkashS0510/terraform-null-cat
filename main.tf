@@ -12,6 +12,10 @@ resource "null_resource" "example" {
   }
 }
 
+resource "aws_s3_bucket" "logs" {
+  bucket = "my-log-bucket"
+}
+
 resource "local_file" "artifact" {
   content  = var.artifact_content
   filename = "${path.module}/artifact.txt"
