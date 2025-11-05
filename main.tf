@@ -12,6 +12,7 @@ terraform {
 }
 
 
+
 provider "aws" {
   region  = "us-east-1"
   # profile = "default"   # uncomment to use named profile
