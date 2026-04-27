@@ -1,31 +1,52 @@
-provider "local" {}
+module "iam_instance_profile" {
+  source = "./modules/iam_instance_profile"
 
-variable "artifact_content" {
-  description = "Content to be written23 to the artifact file"
-  type        = string
-  default     = "This is an artifact22 created by Terraform"
+  name = var.iam_instance_profile_name
+  path = var.iam_instance_profile_path
+  role = var.iam_instance_profile_role
 }
 
-resource "null_resource" "example" {
-  provisioner "local-exec" {
-    command = "echo '${var.artifact_content}' > artifact.txt"
-  }
+module "key_pair" {
+  source = "./modules/key_pair"
+
+  key_name   = var.key_pair_key_name
+  public_key = var.key_pair_public_key
 }
 
-resource "local_file" "artifact" {
-  content  = var.artifact_content
-  filename = "${path.module}/artifact.txt"
+module "instance" {
+  source = "./modules/instance"
+
+  ami                                     = var.instance_ami
+  availability_zone                       = var.instance_availability_zone
+  capacity_reservation_preference         = var.instance_capacity_reservation_preference
+  cpu_core_count                          = var.instance_cpu_core_count
+  cpu_threads_per_core                    = var.instance_cpu_threads_per_core
+  ebs_optimized                           = var.instance_ebs_optimized
+  enclave_options_enabled                 = var.instance_enclave_options_enabled
+  iam_instance_profile                    = module.iam_instance_profile.name
+  instance_type                           = var.instance_instance_type
+  key_name                                = module.key_pair.key_name
+  metadata_http_endpoint                  = var.instance_metadata_http_endpoint
+  metadata_http_protocol_ipv6             = var.instance_metadata_http_protocol_ipv6
+  metadata_http_put_response_hop_limit    = var.instance_metadata_http_put_response_hop_limit
+  metadata_http_tokens                    = var.instance_metadata_http_tokens
+  metadata_instance_metadata_tags         = var.instance_metadata_instance_metadata_tags
+  monitoring                              = var.instance_monitoring
+  root_block_device_delete_on_termination = var.instance_root_block_device_delete_on_termination
+  source_dest_check                       = var.instance_source_dest_check
+  subnet_id                               = var.instance_subnet_id
+  tags                                    = var.instance_tags
+  tenancy                                 = var.instance_tenancy
+  vpc_security_group_ids                  = var.instance_vpc_security_group_ids
 }
 
-output "cat_ghost" {
-  value = "Ghost meawed successfully!"
-}
+module "network_interface" {
+  source = "./modules/network_interface"
 
-
-output "cat_is_not_ghost" {
-  value = "Ghost meawed successfully!"
-}
-
-output "artifact_content" {
-  value = local_file.artifact.content
+  attached_instance_id = module.instance.id
+  device_index         = var.eni_device_index
+  private_ips          = var.eni_private_ips
+  security_groups      = var.eni_security_groups
+  source_dest_check    = var.eni_source_dest_check
+  subnet_id            = var.eni_subnet_id
 }
