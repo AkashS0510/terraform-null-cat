@@ -1,14 +1,14 @@
 variable "name" {
-  description = "Name of the IAM instance profile"
   type        = string
+  description = "Name of the IAM instance profile"
 }
 
 variable "path" {
-  description = "Path for the instance profile"
   type        = string
+  description = "Path for the instance profile"
 }
 
-variable "role" {
-  description = "Name of the IAM role to associate with the profile"
+variable "role_name" {
   type        = string
+  description = "Name of the IAM role to associate with the instance profile"
 }

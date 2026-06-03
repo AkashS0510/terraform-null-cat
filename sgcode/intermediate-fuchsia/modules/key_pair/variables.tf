@@ -1,10 +1,10 @@
 variable "key_name" {
-  description = "Name of the key pair"
   type        = string
+  description = "Name of the key pair"
 }
 
 variable "public_key" {
-  description = "Public key material"
   type        = string
+  description = "Public key material"
   sensitive   = true
 }

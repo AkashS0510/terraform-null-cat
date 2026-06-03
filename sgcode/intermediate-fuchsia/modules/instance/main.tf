@@ -1,9 +1,9 @@
 resource "aws_instance" "this" {
-  ami                    = var.ami
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
   availability_zone      = var.availability_zone
   ebs_optimized          = var.ebs_optimized
-  iam_instance_profile   = var.iam_instance_profile
-  instance_type          = var.instance_type
+  iam_instance_profile   = var.iam_instance_profile_name
   key_name               = var.key_name
   monitoring             = var.monitoring
   source_dest_check      = var.source_dest_check

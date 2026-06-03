@@ -1,26 +1,30 @@
 variable "subnet_id" {
-  description = "Subnet ID to create the ENI in"
   type        = string
+  description = "Subnet ID to create the ENI in"
+}
+
+variable "private_ips" {
+  type        = list(string)
+  description = "List of private IPs to assign to the ENI"
 }
 
 variable "security_groups" {
-  description = "List of security group IDs"
   type        = list(string)
+  description = "List of security group IDs to assign to the ENI"
 }
 
 variable "source_dest_check" {
-  description = "Whether to enable source/destination check"
   type        = bool
+  description = "Whether to enable source destination checking"
 }
 
 variable "description" {
-  description = "Description for the network interface"
   type        = string
+  description = "Description for the network interface"
   default     = null
 }
 
 variable "tags" {
-  description = "Tags to assign to the network interface"
   type        = map(string)
-  default     = {}
+  description = "Tags to assign to the network interface"
 }

@@ -1,87 +1,85 @@
-variable "ami" {
-  description = "AMI ID for the instance"
+variable "ami_id" {
   type        = string
+  description = "AMI ID for the instance"
 }
 
 variable "instance_type" {
-  description = "EC2 instance type"
   type        = string
+  description = "EC2 instance type"
 }
 
 variable "availability_zone" {
-  description = "Availability zone for the instance"
   type        = string
+  description = "Availability zone for the instance"
 }
 
 variable "subnet_id" {
-  description = "Subnet ID to launch the instance in"
   type        = string
+  description = "Subnet ID to launch the instance in"
 }
 
 variable "vpc_security_group_ids" {
-  description = "List of security group IDs"
   type        = list(string)
+  description = "List of security group IDs to associate with the instance"
 }
 
 variable "key_name" {
-  description = "Key pair name"
   type        = string
-  default     = null
+  description = "Key pair name for the instance"
 }
 
-variable "iam_instance_profile" {
-  description = "IAM instance profile name"
+variable "iam_instance_profile_name" {
   type        = string
+  description = "IAM instance profile name to attach to the instance"
   default     = null
 }
 
 variable "source_dest_check" {
+  type        = bool
   description = "Whether to enable source/destination check"
-  type        = bool
-}
-
-variable "ebs_optimized" {
-  description = "Whether the instance is EBS optimized"
-  type        = bool
 }
 
 variable "monitoring" {
-  description = "Whether detailed monitoring is enabled"
   type        = bool
+  description = "Whether to enable detailed monitoring"
+}
+
+variable "ebs_optimized" {
+  type        = bool
+  description = "Whether the instance is EBS optimized"
 }
 
 variable "tenancy" {
-  description = "Instance tenancy"
   type        = string
-}
-
-variable "tags" {
-  description = "Tags to assign to the instance"
-  type        = map(string)
-  default     = {}
+  description = "Tenancy of the instance"
 }
 
 variable "metadata_http_endpoint" {
-  description = "Whether the metadata service is available"
   type        = string
+  description = "Whether the metadata service is available"
 }
 
 variable "metadata_http_tokens" {
-  description = "Whether IMDSv2 is required"
   type        = string
+  description = "Whether IMDSv2 is required"
 }
 
 variable "metadata_http_put_response_hop_limit" {
-  description = "HTTP PUT response hop limit for instance metadata"
   type        = number
+  description = "HTTP PUT response hop limit for instance metadata requests"
 }
 
 variable "metadata_http_protocol_ipv6" {
-  description = "Whether IPv6 endpoint for IMDS is enabled"
   type        = string
+  description = "Whether the IPv6 endpoint for IMDS is enabled"
 }
 
 variable "metadata_instance_metadata_tags" {
-  description = "Whether instance tags are accessible from IMDS"
   type        = string
+  description = "Whether instance tags are accessible from instance metadata"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to assign to the instance"
 }
