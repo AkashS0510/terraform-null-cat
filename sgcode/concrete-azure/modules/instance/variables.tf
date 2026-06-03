@@ -1,0 +1,79 @@
+variable "ami_id" {
+  type        = string
+  description = "AMI ID for the instance"
+}
+
+variable "availability_zone" {
+  type        = string
+  description = "Availability zone for the instance"
+}
+
+variable "iam_instance_profile" {
+  type        = string
+  description = "IAM instance profile name to attach to the instance"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "EC2 instance type"
+}
+
+variable "key_name" {
+  type        = string
+  description = "Key pair name for the instance"
+}
+
+variable "metadata_http_endpoint" {
+  type        = string
+  description = "Whether the metadata service is available"
+}
+
+variable "metadata_http_protocol_ipv6" {
+  type        = string
+  description = "Whether IPv6 endpoint for IMDS is enabled"
+}
+
+variable "metadata_http_put_response_hop_limit" {
+  type        = number
+  description = "HTTP PUT response hop limit for metadata requests"
+}
+
+variable "metadata_http_tokens" {
+  type        = string
+  description = "Whether IMDSv2 is required"
+}
+
+variable "metadata_instance_metadata_tags" {
+  type        = string
+  description = "Whether instance tags are accessible from instance metadata"
+}
+
+variable "monitoring" {
+  type        = bool
+  description = "Whether to enable detailed monitoring"
+}
+
+variable "source_dest_check" {
+  type        = bool
+  description = "Whether to enable source/destination check"
+}
+
+variable "subnet_id" {
+  type        = string
+  description = "Subnet ID to launch the instance in"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to assign to the instance"
+}
+
+variable "tenancy" {
+  type        = string
+  description = "Tenancy of the instance"
+}
+
+variable "vpc_security_group_ids" {
+  type        = list(string)
+  description = "List of security group IDs to associate with the instance"
+}
