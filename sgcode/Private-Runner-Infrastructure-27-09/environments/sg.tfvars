@@ -1,5 +1,5 @@
-iam_instance_profile_name = "Neha_Private_Runner-runner-instance-profile"
-iam_instance_profile_role = "Neha_Private_Runner-ec2-private-runner-role"
+iam_instance_profile_name = "Neha_Private_Runner-runner-instance-profilesds"
+iam_instance_profile_role = "Neha_Private_Runner-ec2-private-runner-roledsds"
 
 key_pairs = {
   adis_key_pair = {
