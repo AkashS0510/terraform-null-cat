@@ -1,7 +1,7 @@
 module "iam_instance_profile" {
   source = "./modules/iam_instance_profile"
 
-  name = var.iam_instance_profile_name
+  name = var.iam_instance_profile_namenotreally
   role = var.iam_instance_profile_role
 }
 
