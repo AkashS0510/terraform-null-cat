@@ -2,7 +2,7 @@ module "network_interface" {
   source   = "./modules/network_interface"
   for_each = var.network_interfaces
 
-  name                           = each.
+  name                           = each.key
   location                       = each.value.location
   resource_group_name            = each.value.resource_group_name
   accelerated_networking_enabled = each.value.accelerated_networking_enabled
